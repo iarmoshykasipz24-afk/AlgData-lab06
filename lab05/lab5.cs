@@ -50,4 +50,11 @@ callCount = 0;
 printTree(catalog, 0);
 Console.WriteLine($"printTree calls: {callCount}");
 
+Console.WriteLine();
+
+callCount = 0;
+int total = countProducts(catalog);
+Console.WriteLine($"Total products: {total}");
+Console.WriteLine($"countProducts calls: {callCount}");
+
 record Category(string Name, int Products, List<Category> Children);
