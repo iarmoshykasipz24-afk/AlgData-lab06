@@ -46,6 +46,14 @@ int countProducts(Category node)
     return node.Products + node.Children.Sum(child => countProducts(child));
 }
 
+int maxDepth(Category node)
+{
+    callCount++;
+    if (node.Children.Count == 0)
+        return 1;
+    return 1 + node.Children.Max(child => maxDepth(child));
+}
+
 callCount = 0;
 printTree(catalog, 0);
 Console.WriteLine($"printTree calls: {callCount}");
@@ -56,5 +64,12 @@ callCount = 0;
 int total = countProducts(catalog);
 Console.WriteLine($"Total products: {total}");
 Console.WriteLine($"countProducts calls: {callCount}");
+
+Console.WriteLine();
+
+callCount = 0;
+int depth = maxDepth(catalog);
+Console.WriteLine($"Max depth: {depth}");
+Console.WriteLine($"maxDepth calls: {callCount}");
 
 record Category(string Name, int Products, List<Category> Children);
