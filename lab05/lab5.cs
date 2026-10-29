@@ -38,6 +38,14 @@ void printTree(Category node, int level)
         printTree(child, level + 1);
 }
 
+int countProducts(Category node)
+{
+    callCount++;
+    if (node.Children.Count == 0)
+        return node.Products;
+    return node.Products + node.Children.Sum(child => countProducts(child));
+}
+
 callCount = 0;
 printTree(catalog, 0);
 Console.WriteLine($"printTree calls: {callCount}");
